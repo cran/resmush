@@ -1,0 +1,133 @@
+---
+title: "Using resmush"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using resmush}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<!-- resmush.Rmd is generated from resmush.Rmd.orig. Please edit that file -->
+
+
+
+**resmush** is a **R** package that allow users to optimize and compress images
+using [reSmush.it](https://resmush.it/). reSmush.it is a free API that provides
+image optimization, and it has been implemented on Wordpress, Drupal or Magento.
+
+Some of the features of reSmush.it are:
+
+-   Free optimization services, no API key required.
+-   Optimize local and online images.
+-   Image files supported: `png`, `jpg/jpeg`, `gif`, `bmp`, `tiff`, `webp`.
+-   Max image size: 5 Mb.
+-   Compression via several algorithms:
+    -   [**PNGQuant**](https://pngquant.org/): Strip unneeded chunks from
+        `png`s, preserving a full alpha transparency.
+    -   [**JPEGOptim**](https://github.com/tjko/jpegoptim)**:** Lossless
+        optimization based on optimizing the Huffman tables.
+    -   [**OptiPNG**](https://optipng.sourceforge.net/): `png` reducer that is
+        used by several online optimizers.
+
+## Example
+
+Compressing an online `jpg` image:
+
+
+```r
+library(resmush)
+
+url <- paste0(
+  "https://raw.githubusercontent.com/dieghernan/",
+  "resmush/main/img/jpg_example_original.jpg"
+)
+
+resmush_url(url, outfile = "jpg_example_compress.jpg", overwrite = TRUE)
+#> ══ resmush summary ════════════════════════════════════════════════════════════
+#> ℹ Input: 1 url with size 178.7 Kb
+#> ✔ Success for 1 url: Size now is 45 Kb (was 178.7 Kb). Saved 133.7 Kb (74.82%).
+#> See result in directory '.'.
+```
+
+::: figure
+<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"/>
+<img src="jpg_example_compress.jpg" alt="Optimized figure" width="100%"/>
+
+<p class="caption">
+
+Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb
+(Compression 74.8%)
+
+</p>
+:::
+
+The quality of the compression can be adjusted in the case of `jpg` files using
+the parameter `qlty`. However, it is recommended to keep this value above 90 to
+get a good image quality.
+
+
+```r
+# Extreme case
+resmush_url(url,
+  outfile = "jpg_example_compress_low.jpg",
+  overwrite = TRUE, qlty = 3
+)
+#> ══ resmush summary ════════════════════════════════════════════════════════════
+#> ℹ Input: 1 url with size 178.7 Kb
+#> ✔ Success for 1 url: Size now is 2.2 Kb (was 178.7 Kb). Saved 176.4 Kb (98.74%).
+#> See result in directory '.'.
+```
+
+::: figure
+
+<img src="jpg_example_compress_low.jpg" alt="Low quality figure" width="100%"/>
+
+<p class="caption">
+
+Low quality image due to a high compression rate.
+
+</p>
+:::
+
+All the functions return invisibly a data set with a summary of the process. The
+next example shows how when compressing a local file.
+
+
+```r
+png_file <- system.file("extimg/example.png", package = "resmush")
+
+# For the example, copy to a temporary file
+tmp_png <- tempfile(fileext = ".png")
+file.copy(png_file, tmp_png, overwrite = TRUE)
+#> [1] TRUE
+
+
+summary <- resmush_file(tmp_png)
+
+tibble::as_tibble(summary[, -c(1, 2)])
+#> # A tibble: 1 × 6
+#>   src_size dest_size compress_ratio notes src_bytes dest_bytes
+#>   <chr>    <chr>     <chr>          <chr>     <dbl>      <dbl>
+#> 1 239.9 Kb 70.7 Kb   70.54%         OK       245618      72356
+```
+
+## Other alternatives
+
+-   [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui Xie
+    [![Sponsor Yihui Xie on
+    GitHub](sponsor.svg)](https://github.com/sponsors/yihui) has the
+    following functions that optimize image files:
+    -   `xfun::tinify()` is similar to `resmush_file()` but uses
+        [TinyPNG](https://tinypng.com/). API key required.
+    -   `xfun::optipng()` compress local files with OptiPNG (that needs to be
+        installed locally).
+-   [**tinieR**](https://jmablog.github.io/tinieR/) package by
+    [jmablog](https://jmablog.com/). **R** package that provides a full
+    interface with [TinyPNG](https://tinypng.com/).
+-   [**optout**](https://github.com/coolbutuseless/optout) package by
+    [\@coolbutuseless](https://coolbutuseless.github.io/). Similar to
+    `xfun::optipng()` with additional options. Needs additional software
+    installed locally.
+-   [Imgbot](https://imgbot.net/): Automatic optimization for files hosted in
+    GitHub repos.
+
