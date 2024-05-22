@@ -5,7 +5,13 @@
 
 <!-- badges: start -->
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/resmush)](https://CRAN.R-project.org/package=resmush)
+[![CRAN
+results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-project.org/web/checks/check_results_resmush.html)
+[![Downloads](https://cranlogs.r-pkg.org/badges/resmush)](https://CRAN.R-project.org/package=resmush)
 [![R-CMD-check](https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml/badge.svg)](https://github.com/dieghernan/resmush/actions/workflows/check-full.yaml)
+[![R-hub](https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/resmush/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/resmush)
 [![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
@@ -13,15 +19,19 @@
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![status](https://tinyverse.netlify.app/status/resmush)](https://CRAN.R-project.org/package=resmush)
 
 <!-- badges: end -->
 
 **resmush** is a **R** package that allow users to optimize and compress
-images using [reSmush.it](https://resmush.it/). reSmush.it is a free API
-that provides image optimization, and it has been implemented on
-Wordpress, Drupal or Magento.
+images using [**reSmush.it**](https://resmush.it/). reSmush.it is a
+<u>free API</u> that provides image optimization, and it has been
+implemented on
+[WordPress](https://wordpress.org/plugins/resmushit-image-optimizer/),
+[Drupal](https://www.drupal.org/project/resmushit) and [many
+more](https://resmush.it/tools/).
 
-Some of the features of reSmush.it are:
+Some of the features of **reSmush.it** are:
 
 - Free optimization services, no API key required.
 - Optimize local and online images.
@@ -38,7 +48,8 @@ Some of the features of reSmush.it are:
 
 ## Installation
 
-Once accepted, you can install **resmush** from **CRAN** with:
+Install **resmush** from
+[**CRAN**](https://CRAN.R-project.org/package=resmush) with:
 
 ``` r
 install.packages("resmush")
@@ -48,8 +59,7 @@ You can install the development version of **resmush** from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("dieghernan/resmush")
+remotes::install_github("dieghernan/resmush")
 ```
 
 Alternatively, you can install **resmush** using the
@@ -84,13 +94,17 @@ resmush_url(url, outfile = "man/figures/jpg_example_compress.jpg", overwrite = T
 
 <div class="figure">
 
-<img src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg" alt="Original online figure" width="100%"/>
-<img src="./man/figures/jpg_example_compress.jpg" alt="Optimized figure" width="100%"/>
+[<img
+src="https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg"
+style="width:100.0%" alt="Original uncompressed file" />](https://raw.githubusercontent.com/dieghernan/resmush/main/img/jpg_example_original.jpg)
+
+[<img src="./man/figures/jpg_example_compress.jpg" style="width:100.0%"
+alt="Optimized file" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress.jpg)
 
 <p class="caption">
 
 Original picture (top) 178.7 Kb and optimized picture (bottom) 45 Kb
-(Compression 74.8%)
+(Compression 74.8%). Click to enlarge.
 
 </p>
 
@@ -114,11 +128,8 @@ resmush_url(url,
 
 <div class="figure">
 
-<figure>
-<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
-alt="Low quality figure" />
-<figcaption aria-hidden="true">Low quality figure</figcaption>
-</figure>
+[<img src="man/figures/jpg_example_compress_low.jpg" style="width:100.0%"
+alt="Low quality figure" />](https://dieghernan.github.io/resmush/reference/figures/jpg_example_compress_low.jpg)
 
 <p class="caption">
 
@@ -138,6 +149,9 @@ png_file <- system.file("extimg/example.png", package = "resmush")
 tmp_png <- tempfile(fileext = ".png")
 file.copy(png_file, tmp_png, overwrite = TRUE)
 #> [1] TRUE
+```
+
+``` r
 
 
 summary <- resmush_file(tmp_png, overwrite = TRUE)
@@ -151,23 +165,42 @@ tibble::as_tibble(summary[, -c(1, 2)])
 
 ## Other alternatives
 
-- [**xfun**](https://cran.r-project.org/package=xfun) package by Yihui
-  Xie [![Sponsor Yihui Xie on
-  GitHub](man/figures/sponsor.svg)](https://github.com/sponsors/yihui)
-  has the following functions that optimize image files:
+There are other alternatives for optimizing images with **R**:
+
+- **xfun** ([Xie 2024](#ref-xfun)), which includes the following
+  functions for optimizing image files:
   - `xfun::tinify()` is similar to `resmush_file()` but uses
-    [TinyPNG](https://tinypng.com/). API key required.
-  - `xfun::optipng()` compress local files with OptiPNG (that needs to
-    be installed locally).
+    [**TinyPNG**](https://tinypng.com/). An API key is required.
+  - `xfun::optipng()` compresses local files with **OptiPNG** (which
+    needs to be installed locally).
 - [**tinieR**](https://jmablog.github.io/tinieR/) package by
-  [jmablog](https://jmablog.com/). **R** package that provides a full
-  interface with [TinyPNG](https://tinypng.com/).
+  [jmablog](https://jmablog.com/). An **R** package that provides a full
+  interface with [**TinyPNG**](https://tinypng.com/).
 - [**optout**](https://github.com/coolbutuseless/optout) package by
   [@coolbutuseless](https://coolbutuseless.github.io/). Similar to
-  `xfun::optipng()` with additional options. Needs additional software
-  installed locally.
-- [Imgbot](https://imgbot.net/): Automatic optimization for files hosted
-  in GitHub repos.
+  `xfun::optipng()` with more options. Requires additional software to
+  be installed locally.
+
+| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
+|-------------------|------|----------------------|---------|----------|-----------------------------|
+| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
+| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
+| **optout**        | No   | Yes                  | No      | No       | No                          |
+| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
+
+Table 1: **R** packages: Comparison of alternatives for optimizing
+images.
+
+| tool              | png | jpg | gif | bmp | tiff | webp | pdf |
+|-------------------|-----|-----|-----|-----|------|------|-----|
+| `xfun::tinify()`  | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| `xfun::optipng()` | ✅  | ❌  | ❌  | ❌  | ❌   | ❌   | ❌  |
+| **tinieR**        | ✅  | ✅  | ❌  | ❌  | ❌   | ✅   | ❌  |
+| **optout**        | ✅  | ✅  | ❌  | ❌  | ❌   | ❌   | ✅  |
+| **resmush**       | ✅  | ✅  | ✅  | ✅  | ✅   | ✅   | ❌  |
+
+Table 2: **R** packages: Formats admitted.
 
 ## Citation
 
@@ -184,17 +217,23 @@ A BibTeX entry for LaTeX users is
       title = {{resmush}: Optimize and Compress Image Files with {reSmush.it}},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.1.0},
+      version = {0.1.1},
       doi = {10.5281/zenodo.10556679},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }
 
-## Attributions
+## References
 
-Logo uses:
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
-- [The great wave of Kanagawa icons created by Freepik -
-  Flaticons](https://www.flaticon.com/free-icons/the-great-wave-of-kanagawa "the great wave of kanagawa icons")
-- [Compression icons created by MansyGraphics -
-  Flaticon](https://www.flaticon.com/free-icons/compression "compression icons")
+<div id="ref-xfun" class="csl-entry">
+
+Xie, Yihui. 2024. *<span class="nocase">xfun</span>: Supporting
+Functions for Packages Maintained by Yihui Xie*.
+<https://github.com/yihui/xfun>.
+
+</div>
+
+</div>

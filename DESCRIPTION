@@ -1,6 +1,6 @@
 Package: resmush
 Title: Optimize and Compress Image Files with 'reSmush.it'
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
@@ -14,7 +14,8 @@ Depends: R (>= 3.6.0)
 Imports: cli, curl, httr2 (>= 1.0.0), tools, utils
 Suggests: grid, knitr, png, rmarkdown, testthat (>= 3.0.0)
 VignetteBuilder: knitr
-Config/Needs/website: dieghernan/gitdevr, xfun, dplyr, tibble, devtools
+Config/Needs/website: dieghernan/gitdevr, xfun, dplyr, tibble,
+        devtools, remotes
 Config/testthat/edition: 3
 Config/testthat/parallel: true
 Encoding: UTF-8
@@ -22,9 +23,9 @@ RoxygenNote: 7.3.1
 X-schema.org-keywords: r, compress-images, optimize-images, resmushit,
         api
 NeedsCompilation: no
-Packaged: 2024-02-01 12:16:47 UTC; diego
+Packaged: 2024-05-22 17:54:29 UTC; diego
 Author: Diego Hernangómez [aut, cre, cph]
     (<https://orcid.org/0000-0001-8457-4658>)
 Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-02-02 19:50:02 UTC
+Date/Publication: 2024-05-22 18:10:02 UTC

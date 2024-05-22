@@ -1,5 +1,10 @@
+# resmush 0.1.1
+
+-   Update docs.
+
 # resmush 0.1.0
 
+-   Accepted on **CRAN**.
 -   Now **resmush** uses **httr2** instead of **httr**.
 -   Add DOI: <https://doi.org/10.5281/zenodo.10556679>.
 -   `resmush_file()`, `resmush_dir()` and `resmush_url()` gain an new argument
@@ -13,4 +18,4 @@
 
 # resmush 0.0.1
 
--   Initial version
+-   Initial version.
