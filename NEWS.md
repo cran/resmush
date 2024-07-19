@@ -1,3 +1,7 @@
+# resmush 0.2.0
+
+-   `webp` format is not admitted any more by the API, remove from package.
+
 # resmush 0.1.1
 
 -   Update docs.
