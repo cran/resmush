@@ -1,6 +1,6 @@
 Package: resmush
 Title: Optimize and Compress Image Files with 'reSmush.it'
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person("Diego", "Hernangómez", , "diego.hernangomezherrero@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-8457-4658"))
@@ -21,11 +21,11 @@ Config/testthat/parallel: true
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 X-schema.org-keywords: r, compress-images, optimize-images, resmushit,
-        api
+        api, r-package, cran, cran-r
 NeedsCompilation: no
-Packaged: 2024-07-19 07:24:10 UTC; diego
+Packaged: 2024-12-18 10:23:54 UTC; diego
 Author: Diego Hernangómez [aut, cre, cph]
     (<https://orcid.org/0000-0001-8457-4658>)
 Maintainer: Diego Hernangómez <diego.hernangomezherrero@gmail.com>
 Repository: CRAN
-Date/Publication: 2024-07-19 07:40:02 UTC
+Date/Publication: 2024-12-18 10:40:02 UTC

@@ -14,6 +14,7 @@ results](https://badges.cranchecks.info/worst/resmush.svg)](https://cran.r-proje
 [![R-hub](https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml/badge.svg)](https://github.com/dieghernan/resmush/actions/workflows/rhub.yaml)
 [![codecov](https://codecov.io/gh/dieghernan/resmush/graph/badge.svg)](https://app.codecov.io/gh/dieghernan/resmush)
 [![CodeFactor](https://www.codefactor.io/repository/github/dieghernan/resmush/badge)](https://www.codefactor.io/repository/github/dieghernan/resmush)
+[![r-universe](https://dieghernan.r-universe.dev/badges/resmush)](https://dieghernan.r-universe.dev/resmush)
 [![DOI](https://img.shields.io/badge/DOI-10.32614/CRAN.package.resmush-blue)](https://doi.org/10.32614/CRAN.package.resmush)
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
@@ -60,7 +61,8 @@ You can install the development version of **resmush** from
 remotes::install_github("dieghernan/resmush")
 ```
 
-Alternatively, you can install **resmush** using the **r-universe+**:
+Alternatively, you can install **resmush** using the
+[r-universe](https://dieghernan.r-universe.dev/resmush):
 
 ``` r
 # Install resmush in R:
@@ -175,13 +177,13 @@ There are other alternatives for optimizing images with **R**:
   `xfun::optipng()` with more options. Requires additional software to
   be installed locally.
 
-| tool              | CRAN | Additional software? | Online? | API Key? | Limits?                     |
-|-------------------|------|----------------------|---------|----------|-----------------------------|
-| `xfun::tinify()`  | Yes  | No                   | Yes     | Yes      | 500 files/month (Free tier) |
-| `xfun::optipng()` | Yes  | Yes                  | No      | No       | No                          |
-| **tinieR**        | No   | No                   | Yes     | Yes      | 500 files/month (Free tier) |
-| **optout**        | No   | Yes                  | No      | No       | No                          |
-| **resmush**       | Yes  | No                   | Yes     | No       | Max size 5Mb                |
+| tool | CRAN | Additional software? | Online? | API Key? | Limits? |
+|----|----|----|----|----|----|
+| `xfun::tinify()` | Yes | No | Yes | Yes | 500 files/month (Free tier) |
+| `xfun::optipng()` | Yes | Yes | No | No | No |
+| **tinieR** | No | No | Yes | Yes | 500 files/month (Free tier) |
+| **optout** | No | Yes | No | No | No |
+| **resmush** | Yes | No | Yes | No | Max size 5Mb |
 
 Table 1: **R** packages: Comparison of alternatives for optimizing
 images.
@@ -212,7 +214,7 @@ A BibTeX entry for LaTeX users is
       doi = {10.32614/CRAN.package.resmush},
       author = {Diego Hernangómez},
       year = {2024},
-      version = {0.2.0},
+      version = {0.2.1},
       url = {https://dieghernan.github.io/resmush/},
       abstract = {Compress local and online images using the reSmush.it API service <https://resmush.it/>.},
     }
